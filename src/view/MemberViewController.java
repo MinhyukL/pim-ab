@@ -7,9 +7,7 @@ import java.util.ResourceBundle;
 import application.Main;
 import controller.MemberService;
 import controller.MemberServiceImpl;
-//import controller.TestController;
-//import controller.TestControllerImpl;
-import examples.TableViewTest.Person;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -43,26 +41,27 @@ public class MemberViewController implements Initializable {
 	@FXML	private TableColumn<Member, String> columnID;
 	@FXML	private TableColumn<Member, String> columnPW;
 	@FXML	private TableColumn<Member, String> columnMobilePhone;
-		
+	
+	// Member : model이라고도 하고 DTO, VO 라고도 함
+	// 시스템 밖에 저장된 정보를 객체들간에 사용하는 정보로 변환하 것
 	private final ObservableList<Member> data = FXCollections.observableArrayList();
+	// 목록 : 이중연결리스트는 아니지만 리스트의 특징과 배열의 특징을 잘 혼횽해놓은 클래스 ArrayList
 	ArrayList<Member> memberList;
 	MemberService memberService;
 	
-	//TestController ts;
-	
+
 	public MemberViewController() {
 		
 	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		//ts = new TestControllerImpl();
-		// tableViewMember = new TableView<Member>();
 
 		memberService = new MemberServiceImpl();
+		// 람다식 : java 8 함수형 언어 지원
 		columnName.setCellValueFactory(cvf -> cvf.getValue().unameProperty());
 		columnID.setCellValueFactory(cvf -> cvf.getValue().uidProperty());
-		//columnPW.setCellValueFactory(cvf -> cvf.getValue().upwProperty());
+		columnPW.setCellValueFactory(cvf -> cvf.getValue().upwProperty());
 		
 		tableViewMember.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showMemberInfo(newValue));
@@ -76,6 +75,8 @@ public class MemberViewController implements Initializable {
 	String str = ""; // 인스턴스 변수 - 객체 변수, 객체가 존재하는 동안 메모리에 존재
 	@FXML 
 	private void handleExecute() { // event source, listener, handler
+		str = str + tfExecute.getText() + "\n";
+		
 		//str = ts.setTextArea(tfExecute.getText());
 		/*
 		str = taExecute.getText();

@@ -1,0 +1,2 @@
+uid	upw	uname
+MinhyukL	1234	MinhyukL
