@@ -40,6 +40,7 @@ public class MemberViewController implements Initializable {
 	@FXML	private TableColumn<Member, String> columnName;
 	@FXML	private TableColumn<Member, String> columnID;
 	@FXML	private TableColumn<Member, String> columnPW;
+
 	//@FXML	private TableColumn<Member, String> columnMobilePhone;
 	
 	// Member : model이라고도 하고 DTO, VO 라고도 함
@@ -48,7 +49,7 @@ public class MemberViewController implements Initializable {
 	// 목록 : 이중연결리스트는 아니지만 리스트의 특징과 배열 특징을 잘 혼용해 놓은 클래스 ArrayList 
 	ArrayList<Member> memberList;
 	MemberService memberService;
-	
+
 	public MemberViewController() {
 		
 	}
