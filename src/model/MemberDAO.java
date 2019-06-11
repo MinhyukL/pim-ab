@@ -23,7 +23,7 @@ public class MemberDAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	} 
 	public ArrayList<Member> selectAll() { 
 		// 입력한 메모리 상에 존재하는 모든 멤버 정보를 가져와 출력			
 		return memberList;	
