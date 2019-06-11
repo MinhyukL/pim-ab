@@ -129,14 +129,19 @@ public class MemberViewController implements Initializable {
 	}
 	@FXML 
 	private void handleUpdate() {
-		Member newMember = new Member(tfID.getText(), tfPW.getText(), tfName.getText(), tfMobilePhone.getText());
+		Member newMember = new Member(tfID.getText(), tfPW.getText(), tfName.getText(), "");
 
 		int selectedIndex = tableViewMember.getSelectionModel().getSelectedIndex();
+		// uid를 변경하고 수정 -> 생성으로 처리하게 된다.
+		// uid를 조회하는데 uid가 수정이되면 실제로 수정이 불가능함. findByUid()가 -1 반환 
+		if (selectedIndex != memberService.findByUid(newMember)) {
+			showAlert("아이디를 수정하면 업데이트 할 수 없습니다.");
+		}
 		if (selectedIndex >= 0) {
 			tableViewMember.getItems().set(selectedIndex, newMember);
 			memberService.update(newMember);			
 		} else {
-			showAlert("������ �� �� �����ϴ�.");          
+			showAlert("업데이트 할 수 없습니다.");          
         }
 	}
 	
